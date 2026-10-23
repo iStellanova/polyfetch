@@ -12,6 +12,7 @@
 	gnumake
 	clang-tools
 	valgrind
+        hyperfine
       ];
     };
   };

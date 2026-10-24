@@ -7,12 +7,13 @@
   in {
     devShells.${system}.default = pkgs.mkShell {
       packages = with pkgs; [
-	gcc
-	gdb
-	gnumake
-	clang-tools
-	valgrind
+        gcc
+        gdb
+        gnumake
+        clang-tools
+        valgrind
         hyperfine
+        sqlite
       ];
     };
   };

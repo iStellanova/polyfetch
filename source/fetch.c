@@ -47,12 +47,9 @@ void nixClosureSize(void) {
     " FROM closure JOIN ValidPaths USING (id)";
   if (realpath("/run/current-system", root) &&
       sqlite3_open_v2("/nix/var/nix/db/db.sqlite", &db,
-		      SQLITE_OPEN_READONLY, NULL) ==
-      SQLITE_OK &&
-      sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) ==
-      SQLITE_OK &&
-      sqlite3_bind_text(stmt, 1, root, -1, SQLITE_TRANSIENT) ==
-      SQLITE_OK &&
+      SQLITE_OPEN_READONLY, NULL) == SQLITE_OK &&
+      sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) == SQLITE_OK &&
+      sqlite3_bind_text(stmt, 1, root, -1, SQLITE_TRANSIENT) == SQLITE_OK &&
       sqlite3_step(stmt) == SQLITE_ROW) {
     printf("System Closure: %lld paths, %.2f GB\n",
 	   (long long)sqlite3_column_int64(stmt, 0),
